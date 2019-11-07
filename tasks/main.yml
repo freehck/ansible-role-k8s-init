@@ -11,7 +11,13 @@
     creates: /etc/kubernetes/admin.conf
 
 - name: configure superuser to run kubectl
-  lineinfile:
-    path: "/root/.bashrc"
-    line: "export KUBECONFIG=/etc/kubernetes/admin.conf"
-    state: present
+  block:
+    - name: create directory .kube
+      file:
+        path: /root/.kube
+        state: directory
+    - name: symlink config
+      file:
+        src: /etc/kubernetes/admin.conf
+        dest: /root/.kube/config
+        state: link
