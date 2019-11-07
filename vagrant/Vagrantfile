@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
         # k8s_base is an implicit dependency
         k8s_base_node_ip: CIDR_PREFIX+".10",
         k8s_base_ver: "1.16.2-00",
-        # this cole configurations
+        # this role configurations
         k8s_init_cidr: "192.168.0.0/16",
         k8s_init_node_ip: CIDR_PREFIX+".10",
         k8s_init_node_name: "{{ inventory_hostname }}"
