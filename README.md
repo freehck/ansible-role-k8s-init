@@ -11,14 +11,14 @@ This role initializes kubernetes address. It suggests that all the binaries (`ku
 Role Variables
 --------------
 
-`k8s_base_node_ip`: ip address of this kubernetes node
+`k8s_init_cidr`: cidr that k8s will use
 
-`k8s_base_ver`: version of kubernetes binaries you want to install
+`k8s_init_node_ip`: this node ip address, on bare metal hosts and virtual machines you can use `ansible_host` or `ansible_default_ipv4.address`.
 
 Example
 -------
 
-    - hosts: all
+    - hosts: k8s-master
       become: true
       vars:
         # k8s_base is an implicit dependency
