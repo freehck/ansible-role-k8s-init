@@ -1,5 +1,0 @@
----
-- src: freehck.disable_swap
-- src: freehck.pkg_install
-- src: freehck.add_repo
-- src: freehck.k8s_base
