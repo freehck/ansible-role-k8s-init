@@ -1,0 +1,17 @@
+---
+
+# https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm
+
+- name: initialize k8s cluster with kubeadm
+  command: kubeadm init --apiserver-advertise-address={{ k8s_init_node_ip }} \
+                        --apiserver-cert-extra-sans={{ k8s_init_node_ip }} \
+                        --node-name {{ k8s_init_node_name }} \
+                        --pod-network-cidr={{ k8s_init_cidr }}
+  args:
+    creates: /etc/kubernetes/admin.conf
+
+- name: configure superuser to run kubectl
+  lineinfile:
+    path: "/root/.bashrc"
+    line: "export KUBECONFIG=/etc/kubernetes/admin.conf"
+    state: present
